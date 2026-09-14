@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Buddy PH — Matuto ng AI. Gamitin ang AI. Kumita gamit ang AI.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root{
+  --teal:#0F3D36;
+  --teal-deep:#0A2B26;
+  --ivory:#FFF9EE;
+  --mango:#F5A623;
+  --coral:#FF6B5B;
+  --jade:#2FA88C;
+  --peach:#FFE7C9;
+  --ink:#16241F;
+  --ink-soft:#5B6B63;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',sans-serif;
+  color:var(--ink);
+  background:var(--ivory);
+  line-height:1.5;
+}
+h1,h2,h3,h4{font-family:'Baloo 2',sans-serif;line-height:1.15;}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px;}
+section{padding:88px 0;}
+@media (max-width:720px){section{padding:56px 0;} .wrap{padding:0 20px;}}
+
+/* ---------- nav ---------- */
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,249,238,0.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(22,36,31,0.06);
+}
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 28px;max-width:1120px;margin:0 auto;
+}
+.logo{
+  display:flex;align-items:center;gap:9px;
+  font-family:'Baloo 2',sans-serif;font-weight:700;font-size:19px;color:var(--teal);
+}
+.logo-mark{
+  width:34px;height:34px;border-radius:10px;
+  background:linear-gradient(135deg,var(--mango),var(--coral));
+  display:flex;align-items:center;justify-content:center;color:white;font-size:16px;
+}
+.nav-links{display:flex;gap:30px;font-size:14px;font-weight:600;color:var(--ink-soft);}
+.nav-links a:hover{color:var(--teal);}
+.nav-cta{
+  background:var(--teal);color:var(--ivory);padding:10px 20px;border-radius:30px;
+  font-weight:700;font-size:14px;
+}
+@media (max-width:720px){.nav-links{display:none;}}
+
+/* ---------- hero ---------- */
+.hero{
+  padding:70px 0 40px;
+  display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;
+}
+@media (max-width:860px){.hero{grid-template-columns:1fr;padding:40px 0;}}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--peach);color:var(--ink);
+  padding:7px 14px;border-radius:20px;font-size:13px;font-weight:700;
+}
+.hero h1{
+  font-size:44px;margin-top:20px;color:var(--teal);letter-spacing:-0.5px;
+}
+@media (max-width:520px){.hero h1{font-size:33px;}}
+.hero h1 .accent{color:var(--coral);}
+.hero p{font-size:16.5px;color:var(--ink-soft);margin-top:20px;max-width:480px;}
+.hero-ctas{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;}
+.btn-primary{
+  background:var(--mango);color:var(--ink);padding:16px 28px;border-radius:30px;
+  font-family:'Baloo 2',sans-serif;font-weight:600;font-size:16px;border:none;cursor:pointer;
+}
+.btn-ghost{
+  background:transparent;color:var(--teal);padding:16px 24px;border-radius:30px;
+  font-weight:700;font-size:15px;border:2px solid var(--teal);
+}
+.hero-stripe{
+  height:6px;width:64px;border-radius:4px;margin-top:34px;
+  background:linear-gradient(90deg,var(--mango) 0 33%,var(--coral) 33% 66%,var(--jade) 66% 100%);
+}
+
+/* phone mockup for hero */
+.hero-visual{position:relative;display:flex;justify-content:center;}
+.mini-phone{
+  width:270px;height:560px;background:white;border-radius:34px;
+  border:7px solid var(--teal-deep);box-shadow:0 30px 55px rgba(15,61,54,0.28);
+  position:relative;overflow:hidden;transform:rotate(3deg);
+}
+.mini-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:90px;height:18px;background:var(--teal-deep);border-radius:0 0 12px 12px;z-index:5;}
+.mini-status{height:30px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;font-size:9px;font-weight:700;color:var(--ink);}
+.mini-body{padding:0 16px 16px;}
+.mini-greet{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:15px;}
+.mini-pill{display:inline-block;margin-top:6px;background:rgba(255,107,91,0.13);color:var(--coral);font-size:9.5px;font-weight:700;padding:4px 9px;border-radius:12px;}
+.mini-card{margin-top:14px;background:var(--teal);color:var(--ivory);border-radius:16px;padding:14px;}
+.mini-card .l1{font-size:8.5px;color:rgba(255,249,238,0.65);font-weight:600;}
+.mini-card .l2{font-family:'Baloo 2',sans-serif;font-size:12.5px;margin-top:4px;}
+.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:14px;}
+.mini-tile{background:#F7F4EC;border-radius:10px;padding:10px 4px;text-align:center;font-size:15px;}
+.mini-tile span{display:block;font-size:8px;font-weight:700;margin-top:4px;color:var(--ink);}
+.float-badge{
+  position:absolute;background:white;border-radius:14px;padding:10px 14px;
+  box-shadow:0 12px 24px rgba(15,61,54,0.18);display:flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:700;
+}
+.float-badge.top{top:20px;left:-10px;color:var(--jade);}
+.float-badge.bottom{bottom:30px;right:-14px;color:var(--mango);}
+@media (max-width:860px){.float-badge{display:none;}}
+
+/* ---------- signature feature band ---------- */
+.signature{
+  background:var(--teal-deep);color:var(--ivory);
+}
+.signature .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+@media (max-width:860px){.signature .wrap{grid-template-columns:1fr;}}
+.signature-tag{
+  display:inline-block;background:rgba(255,107,91,0.18);color:var(--coral);
+  padding:6px 13px;border-radius:16px;font-size:12.5px;font-weight:700;
+}
+.signature h2{font-size:32px;margin-top:16px;}
+.signature p{color:rgba(255,249,238,0.75);margin-top:14px;font-size:15px;max-width:440px;}
+.signature-quote{
+  margin-top:20px;font-family:'Baloo 2',sans-serif;font-size:17px;color:var(--mango);
+}
+.prompt-demo{
+  background:rgba(255,249,238,0.06);border:1px solid rgba(255,249,238,0.14);
+  border-radius:20px;padding:24px;
+}
+.prompt-demo .lab{font-size:11px;color:rgba(255,249,238,0.55);font-weight:700;}
+.prompt-demo .txt{font-size:14.5px;margin-top:10px;line-height:1.65;}
+.prompt-demo .btnrow{margin-top:18px;display:flex;gap:10px;align-items:center;}
+.mini-copy{background:var(--mango);color:var(--ink);border:none;padding:9px 16px;border-radius:20px;font-weight:700;font-size:12.5px;}
+.mini-points{font-size:12.5px;color:var(--jade);font-weight:700;}
+
+/* ---------- tool finder ---------- */
+.finder{background:var(--peach);}
+.finder .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+@media (max-width:860px){.finder .wrap{grid-template-columns:1fr;}}
+.finder h2{font-size:30px;color:var(--teal);}
+.finder p{margin-top:14px;color:var(--ink-soft);font-size:15px;max-width:420px;}
+.map-list{margin-top:26px;}
+.map-row{
+  display:flex;align-items:center;gap:14px;padding:12px 0;
+  border-bottom:1px solid rgba(22,36,31,0.09);
+}
+.map-row:last-child{border-bottom:none;}
+.map-task{font-size:14px;font-weight:600;width:130px;flex:0 0 auto;display:flex;align-items:center;gap:8px;}
+.map-arrow{color:var(--ink-soft);font-size:14px;}
+.map-tool{font-size:13.5px;font-weight:700;color:var(--teal);}
+.finder-quote-box{
+  margin-top:22px;background:var(--teal);color:var(--mango);
+  display:inline-block;padding:12px 18px;border-radius:14px;
+  font-family:'Baloo 2',sans-serif;font-size:15px;font-weight:600;
+}
+
+/* ---------- how it works ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:44px;}
+@media (max-width:780px){.steps{grid-template-columns:1fr;}}
+.step{position:relative;padding-top:8px;}
+.step-num{
+  font-family:'Baloo 2',sans-serif;font-size:38px;font-weight:700;color:var(--peach);
+  -webkit-text-stroke:1.5px var(--mango);
+}
+.step h3{font-size:18px;margin-top:8px;color:var(--teal);}
+.step p{font-size:14px;color:var(--ink-soft);margin-top:8px;}
+
+/* ---------- features ---------- */
+.features-head{max-width:560px;}
+.features-head h2{font-size:30px;color:var(--teal);}
+.features-head p{margin-top:12px;color:var(--ink-soft);font-size:15px;}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;}
+@media (max-width:900px){.feature-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:600px){.feature-grid{grid-template-columns:1fr;}}
+.feature-card{
+  background:white;border:1px solid rgba(22,36,31,0.07);
+  border-radius:18px;padding:22px;border-top:3px solid var(--accent,var(--mango));
+}
+.feature-card .fi{font-size:24px;}
+.feature-card h4{font-size:15.5px;margin-top:12px;}
+.feature-card p{font-size:13.5px;color:var(--ink-soft);margin-top:6px;}
+
+/* ---------- quote ---------- */
+.testimonial{background:var(--teal);color:var(--ivory);text-align:left;}
+.testimonial .wrap{max-width:680px;}
+.testimonial .mark{font-family:'Baloo 2',sans-serif;font-size:46px;color:var(--mango);line-height:1;}
+.testimonial p{font-size:21px;margin-top:6px;font-family:'Baloo 2',sans-serif;font-weight:500;line-height:1.4;}
+.testimonial .who{margin-top:20px;font-size:13.5px;color:rgba(255,249,238,0.65);font-weight:600;}
+
+/* ---------- cta ---------- */
+.final-cta{
+  background:linear-gradient(135deg,var(--mango),#FFC65C);
+  border-radius:28px;padding:56px 44px;margin:0 28px;
+  display:grid;grid-template-columns:1.2fr 1fr;gap:30px;align-items:center;
+  max-width:1064px;margin-left:auto;margin-right:auto;
+}
+@media (max-width:780px){.final-cta{grid-template-columns:1fr;padding:36px 26px;}}
+.final-cta h2{font-size:28px;color:var(--ink);}
+.final-cta p{margin-top:10px;color:rgba(22,36,31,0.75);font-size:14.5px;}
+.email-row{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap;}
+.email-row input{
+  flex:1;min-width:200px;padding:15px 18px;border-radius:30px;border:none;
+  font-family:'Inter';font-size:14px;
+}
+.email-row button{
+  background:var(--teal);color:var(--ivory);border:none;padding:15px 24px;
+  border-radius:30px;font-family:'Baloo 2',sans-serif;font-weight:600;font-size:14.5px;cursor:pointer;
+}
+.form-note{font-size:11.5px;margin-top:10px;color:rgba(22,36,31,0.55);}
+.form-success{display:none;font-size:14px;font-weight:700;color:var(--teal);margin-top:6px;}
+.form-success.show{display:block;}
+
+/* ---------- footer ---------- */
+footer{padding:50px 0 34px;}
+.foot-row{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:26px;}
+.foot-tag{font-size:13px;color:var(--ink-soft);margin-top:8px;max-width:260px;}
+.foot-links{display:flex;gap:34px;flex-wrap:wrap;}
+.foot-col h5{font-size:12.5px;color:var(--ink-soft);margin-bottom:10px;}
+.foot-col a{display:block;font-size:13.5px;font-weight:600;margin-bottom:8px;color:var(--ink);}
+.foot-bottom{
+  margin-top:40px;padding-top:20px;border-top:1px solid rgba(22,36,31,0.08);
+  font-size:12.5px;color:var(--ink-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo"><div class="logo-mark">🇵🇭</div>AI Buddy PH</div>
+    <div class="nav-links">
+      <a href="#features">Mga Feature</a>
+      <a href="#how">Paano Gumagana</a>
+      <a href="#finder">Tool Finder</a>
+    </div>
+    <a href="#join" class="nav-cta">Sumali</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero">
+    <div>
+      <div class="hero-eyebrow">🎓 Made for Filipinos</div>
+      <h1>Matuto ng AI.<br>Gamitin ang AI.<br><span class="accent">Kumita gamit ang AI.</span></h1>
+      <p>AI doesn't have to be complicated. AI Buddy PH teaches you in small, simple steps — then walks you through actually using it for your work, business, or extra income.</p>
+      <div class="hero-ctas">
+        <a href="#join" class="btn-primary">Simulan na, libre</a>
+        <a href="#how" class="btn-ghost">Tingnan paano</a>
+      </div>
+      <div class="hero-stripe"></div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="float-badge top">🔥 6-day streak</div>
+      <div class="mini-phone">
+        <div class="mini-notch"></div>
+        <div class="mini-status"><span>9:41</span><span>●●●</span></div>
+        <div class="mini-body">
+          <div class="mini-greet">Kumusta, Fatima 👋</div>
+          <div class="mini-pill">🔥 6-day streak</div>
+          <div class="mini-card">
+            <div class="l1">Continue learning</div>
+            <div class="l2">Lesson 3 — How to talk to AI</div>
+          </div>
+          <div class="mini-grid">
+            <div class="mini-tile">🔎<span>Finder</span></div>
+            <div class="mini-tile">🎓<span>Learn</span></div>
+            <div class="mini-tile">🤖<span>Ask AI</span></div>
+            <div class="mini-tile">🛠️<span>Tools</span></div>
+            <div class="mini-tile">📚<span>Prompts</span></div>
+            <div class="mini-tile">🔥<span>Daily</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="float-badge bottom">🏅 +350 points</div>
+    </div>
+  </div>
+</section>
+
+<section class="signature">
+  <div class="wrap">
+    <div>
+      <div class="signature-tag">Ang signature feature namin</div>
+      <h2>Huwag lang mag-aral. Gawin mo talaga.</h2>
+      <p>Every lesson ends with a real task — not just theory. Open your AI assistant, type the prompt we give you, and see what happens. That's how it actually sticks.</p>
+      <div class="signature-quote">"Do this now" — 5 minutes, real results.</div>
+    </div>
+    <div class="prompt-demo">
+      <div class="lab">🚨 Do this now</div>
+      <div class="txt">"Help me create a Facebook post for my business. Ask me 3 questions first before writing it."</div>
+      <div class="btnrow">
+        <button class="mini-copy">📋 Copy prompt</button>
+        <span class="mini-points">✓ +20 AI points</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="finder" id="finder">
+  <div class="wrap">
+    <div>
+      <h2>Hindi sure kung anong AI gamitin?</h2>
+      <p>That confusion is exactly what stops most beginners. Tell the Tool Finder what you're trying to make, and it points you to the right AI — no guessing.</p>
+      <div class="finder-quote-box">"Bai, para dito—ito ang gamitin mo." 😂</div>
+    </div>
+    <div class="map-list">
+      <div class="map-row"><div class="map-task">📖 Book</div><div class="map-arrow">→</div><div class="map-tool">Claude / ChatGPT</div></div>
+      <div class="map-row"><div class="map-task">🎨 Design</div><div class="map-arrow">→</div><div class="map-tool">Canva</div></div>
+      <div class="map-row"><div class="map-task">🔎 Research</div><div class="map-arrow">→</div><div class="map-tool">Perplexity / ChatGPT</div></div>
+      <div class="map-row"><div class="map-task">💻 Website</div><div class="map-arrow">→</div><div class="map-tool">Claude / ChatGPT</div></div>
+      <div class="map-row"><div class="map-task">🎬 Video</div><div class="map-arrow">→</div><div class="map-tool">Video AI tools</div></div>
+      <div class="map-row"><div class="map-task">🖼️ Image</div><div class="map-arrow">→</div><div class="map-tool">Image-gen AI</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="features-head">
+      <h2>Paano gumagana</h2>
+      <p>Three simple moves, repeated daily.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Piliin ang goal mo</h3>
+        <p>Business, work, school, or extra income — we personalize your lessons around it.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>5-minute lessons</h3>
+        <p>Short, beginner-friendly lessons that build on each other — no jargon.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Gawin at kumita</h3>
+        <p>Use what you learned right away, earn points, and keep your streak alive.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <div class="features-head">
+      <h2>Lahat ng kailangan mo, nasa isang app</h2>
+      <p>From your first lesson to your first AI-made post.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card" style="--accent:var(--mango);">
+        <div class="fi">🔎</div>
+        <h4>AI Tool Finder</h4>
+        <p>Tells you exactly which AI to use for the task in front of you.</p>
+      </div>
+      <div class="feature-card" style="--accent:var(--coral);">
+        <div class="fi">🎓</div>
+        <h4>Guided lessons</h4>
+        <p>A beginner path that goes from "what is AI" to using it daily.</p>
+      </div>
+      <div class="feature-card" style="--accent:var(--jade);">
+        <div class="fi">🤖</div>
+        <h4>Ask AI, simplified</h4>
+        <p>A friendlier way in than a blank chat box — pick a topic and go.</p>
+      </div>
+      <div class="feature-card" style="--accent:var(--mango);">
+        <div class="fi">🛠️</div>
+        <h4>Ready-made AI tools</h4>
+        <p>Caption maker, promo maker, business idea generator, and more.</p>
+      </div>
+      <div class="feature-card" style="--accent:var(--coral);">
+        <div class="fi">📚</div>
+        <h4>Prompt library</h4>
+        <p>Copy-paste prompts for work, business, school, and everyday life.</p>
+      </div>
+      <div class="feature-card" style="--accent:var(--jade);">
+        <div class="fi">🔥</div>
+        <h4>Daily challenges</h4>
+        <p>One small task a day keeps your AI habit — and your streak — alive.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial">
+  <div class="wrap">
+    <div class="mark">"</div>
+    <p>Akala ko kailangan ko pa mag-aral nang matagal bago ako makagawa ng kahit ano gamit ang AI. Turns out, sa unang lesson pa lang, may nagawa na ako para sa negosyo ko.</p>
+    <div class="who">— Fatima, sari-sari store owner</div>
+  </div>
+</section>
+
+<section id="join">
+  <div class="final-cta">
+    <div>
+      <h2>Handa ka na bang matuto?</h2>
+      <p>Free ang unang 5 lessons. Walang credit card na kailangan.</p>
+    </div>
+    <div>
+      <form class="email-row" onsubmit="event.preventDefault(); document.getElementById('form-success').classList.add('show'); this.reset();">
+        <input type="email" placeholder="Ilagay ang email mo" required>
+        <button type="submit">Sumali</button>
+      </form>
+      <div class="form-note">Libre. Walang spam. Puwede mag-unsubscribe anumang oras.</div>
+      <div class="form-success" id="form-success">✓ Salamat! Ipapadala namin sa'yo ang link.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <div>
+        <div class="logo"><div class="logo-mark">🇵🇭</div>AI Buddy PH</div>
+        <div class="foot-tag">Learn AI. Use AI. Earn with AI. Made for Filipinos.</div>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h5>Produkto</h5>
+          <a href="#features">Mga feature</a>
+          <a href="#finder">Tool Finder</a>
+          <a href="#how">Paano gumagana</a>
+        </div>
+        <div class="foot-col">
+          <h5>Sumali</h5>
+          <a href="#join">Mag-sign up</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 AI Buddy PH</span>
+      <span>Made with 🧡 for Filipinos</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
